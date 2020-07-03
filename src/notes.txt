@@ -1,0 +1,6 @@
+Beskrivelse
+
+- Fiks en meny hvor du kan kjøpe random (?) pokemon
+- Fiks en liste over alle du har
+- % på ulike pokemon
+- Hvis man har X av en pokemon kan man evolve
