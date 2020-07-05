@@ -1,14 +1,14 @@
-export const pokemonMap = new Map([
-    [1, "Bulbasaur"],
-    [2, "Ivysaur"],
-    [3, "Venusaur"],
-    [4, "Charmander"],
-    [5, "Charmeleon"],
-    [6, "Charizard"],
-    [7, "Squirtle"],
-    [8, "Wartortle"],
-    [9, "Blastoise"],
-    [10, "Caterpie"],
+export const pokemonArray = [
+    [1, ["Bulbasaur", 0]],
+    [2, ["Ivysaur", 0]],
+    [3, ["Venusaur", 0]],
+    [4, ["Charmander", 0]],
+    [5, ["Charmeleon", 0]],
+    [6, ["Charizard", 0]],
+    [7, ["Squirtle", 0]],
+    [8, ["Wartortle", 0]],
+    [9, ["Blastoise", 0]],
+    /*[10, ["Caterpie", 0]],
     [11, "Metapod"],
     [12, "Butterfree"],
     [13, "Weedle"],
@@ -149,5 +149,5 @@ export const pokemonMap = new Map([
     [148, "Dragonair"],
     [149, "Dragonite"],
     [150, "Mewtwo"],
-    [151, "Mew"],
-]);
+    [151, "Mew"],*/
+];
