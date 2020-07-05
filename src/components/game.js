@@ -8,10 +8,11 @@ class Game extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			points: 0,
-			myPokemons: pokemonArray, 
+      points: 0,
+      myPokemons: pokemonArray,
+      inventorySeen: false 
 		};
-	}
+  }
 
 	handlePurchase = () => {
 		console.log(this.state.myPokemons);
@@ -21,7 +22,7 @@ class Game extends Component {
 
 			this.setState((prevState, currentProps) => ({
 				myPokemons: prevState.myPokemons.map((currPokemon, index) => {
-					if (index != ran) {
+					if (index !== ran) {
 						return currPokemon;
 					} else {
 						return { ...currPokemon, count: currPokemon.count + 1 };
@@ -35,9 +36,11 @@ class Game extends Component {
 		this.setState({ points: this.state.points + 1 });
 	};
 
-  handleInventoryClick = () => {
-
-  }
+  toggleInventory = () => {
+    this.setState({
+      inventorySeen: !this.state.inventorySeen
+    });
+  };
 
 	render() {
 		return (
@@ -46,12 +49,12 @@ class Game extends Component {
 
 				<Purchase handlePurchase={this.handlePurchase} />
 				<Ball handleClick={this.handleClick} />
-        <button handleInventoryClick={this.handleInventoryClick}>inventory</button>
-				<ul>
-					{this.state.myPokemons.map((currPokemon, index) => (
-						<li> #{index+1} {currPokemon.name} Count: {currPokemon.count}</li>
-					))}
-				</ul>
+        <div>
+          <div className="btn" onClick={this.toggleInventory}>
+            <button>Toggle inventory</button>
+          </div>
+          {this.state.inventorySeen ? <Inventory toggle={this.toggleInventory} data={this.state.myPokemons}/> : null}
+        </div>
 				<p>{JSON.stringify(this.state.myPokemons.name)}</p>
 			</div>
 		);
