@@ -7,21 +7,24 @@ export default class PopUp extends Component {
 	render() {
 		const inventoryStyle = {
             position: "absolute",
-            right: "20%",
-            top: "20%",
-            maxHeight: "calc(50vh - 21px)",
-            overflowY: "auto",
-            backgroundColor: "green",
-        };
-        
-        const inventoryContentStyle = {
-            position: "absolute",
-            top: "20%",
-        };
-        const closeStyle = {
-            color: "black", 
-            float: "right"
-        }
+            width: "25%",
+            display: "inline-block",
+			right: "20%",
+			top: "20%",
+			maxHeight: "calc(50vh - 21px)",
+			overflowY: "auto",
+			backgroundColor: "green",
+		};
+
+		const inventoryContentStyle = {
+			color: "yellow"
+		};
+		const closeStyle = {
+			color: "yellow",
+            float: "right",
+            transform: "scale(2)",
+            cursor: "pointer",
+		};
 		return (
 			<div className="modal" style={inventoryStyle}>
 				<div className="modal_content" style={inventoryContentStyle}>
@@ -30,7 +33,7 @@ export default class PopUp extends Component {
 					</span>
 					<ul>
 						{this.props.data.map((currPokemon, index) => (
-							<li>
+							<li key={currPokemon.name}>
 								{" "}
 								#{index + 1} {currPokemon.name} Count: {currPokemon.count}
 							</li>
