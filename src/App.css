@@ -1,0 +1,39 @@
+/* ball-animation */
+@keyframes bounceBall {
+	from {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.03);
+	}
+	to {
+		transform: scale(1);
+	}
+}
+
+.pokeball:active {
+	animation-name: bounceBall;
+    animation-duration: 0.3s;
+}
+
+.pokeball {
+    cursor: pointer;
+}
+
+
+
+@keyframes clickNumber {
+	from {
+		top: 500px;
+	}
+	to {
+		top: 0px;
+	}
+}
+
+.clickNumber {
+    animation-name: clickNumber;
+    animation-duration: 5s;
+    position: absolute;
+	font-size: 40px;
+}
