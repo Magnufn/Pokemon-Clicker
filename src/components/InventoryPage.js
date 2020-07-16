@@ -40,3 +40,5 @@ export default class InventoryPage extends Component {
 		);
 	}
 }
+
+export default InventoryPage;

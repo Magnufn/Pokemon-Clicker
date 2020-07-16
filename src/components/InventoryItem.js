@@ -40,4 +40,3 @@ class InventoryItem extends Component {
 	}
 }
 
-export default InventoryItem;
