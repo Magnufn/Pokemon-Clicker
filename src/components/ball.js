@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ball from "../img/pokeball.png";
-import "../App.css";
-import ClickNumber from "./ClickNumber";
+import "../app.css";
+import ClickNumber from "./clicknumber";
 
 class Ball extends Component {
 	getMousePosition(e) {

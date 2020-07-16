@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import InventoryItem from "./InventoryItem";
+import InventoryItem from "./inventoryitem";
 
 export default class InventoryPage extends Component {
 	constructor(props) {
