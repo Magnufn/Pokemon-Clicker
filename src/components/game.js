@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Ball from "./Ball";
 import Purchase from "./Purchase";
-import Inventory from "./Inventory";
 import InventoryPage from "./InventoryPage";
 import { pokemonArray } from "./HashMapPokemon";
 import pokecoin from "../img/pokecoin.png";
