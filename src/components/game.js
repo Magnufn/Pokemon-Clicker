@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import Ball from "./Ball";
 import Purchase from "./Purchase";
 import Inventory from "./Inventory";
+import InventoryPage from "./InventoryPage";
 import { pokemonArray } from "./HashMapPokemon";
-import ClickNumber from "./ClickNumber";
+import pokecoin from "../img/pokecoin.png";
 
 class Game extends Component {
 	constructor(props) {
@@ -19,7 +20,7 @@ class Game extends Component {
 		console.log(this.state.myPokemons);
 		if (this.state.points >= 2) {
 			var ran = Math.floor(Math.random() * 9); //returns int between 0-9 + 1
-			this.setState({ points: this.state.points - 0 });
+			this.setState({ points: this.state.points - 2 });
 
 			this.setState((prevState, currentProps) => ({
 				myPokemons: prevState.myPokemons.map((currPokemon, index) => {
@@ -39,42 +40,45 @@ class Game extends Component {
 		});
 	};
 
-	handleClick() {
-        this.setState({ points: this.state.points + 1 });
-        this.getPosition();
+	handleClick(...args) {
+		console.log(args);
+		this.setState({ points: this.state.points + 1 });
 		//return <ClickNumber />;
-	}
-
-	getPosition(e) {
-		var rect = e.target.getBoundingClientRect();
-		var x = e.clientX - rect.left;
-        var y = e.clientY - rect.top;
-        console.log("e:", e)
-        console.log("x: ", x, " y: ", y)
-		return {
-			x,
-			y,
-		};
 	}
 
 	render() {
 		return (
-			<div>
-				<h1>{this.state.points}</h1>
-
-				<Purchase handlePurchase={this.handlePurchase} />
-				<div>
-					<Ball handleClick={this.handleClick.bind(this)} />
-					<ClickNumber />
+			<div className="content">
+				<div className="firstTab">
+					<h1 style={{ textAlign: "center" }}>
+						{this.state.points} 
+						<img
+							className="pokecoin"
+							type="img"
+							alt="pokecoin"
+							src={pokecoin}
+							style={{margin: "0 0 0 4px"}}
+						/>
+					</h1>
+					{/* 4 different approaches to binding this. First could lead to performance issues.*/}
+					{/*<Ball handleClick={this.handleClick.bind(this)} />*/}
+					{/* Second is similar, easiest way to pass parameters. If code doesn't involve rendering nested children components, this approach is viable. */}
+					<Ball handleClick={() => this.handleClick()} />
+					{/* React docs suggest binding in the constructor. */}
+					{/* The new, experimental way, which create-react-app supports, is to make arrow functions when creating the methods. Will probably be the go-to approach when it's accepted as a feature in React */}
 				</div>
-				<div>
+
+				<div className="secondTab"> HER KOMMER DET MER KULT SENERE</div>
+				<div className="thirdTab">
 					<div className="btn" onClick={this.toggleInventory}>
 						<button>Toggle inventory</button>
 					</div>
+					<Purchase handlePurchase={this.handlePurchase} />
 					{this.state.inventorySeen ? (
-						<Inventory
+						<InventoryPage
 							toggle={this.toggleInventory}
 							data={this.state.myPokemons}
+							points={this.state.points}
 						/>
 					) : null}
 				</div>

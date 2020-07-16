@@ -1,20 +1,32 @@
 import React, { Component } from "react";
-import ball from "../img/circle_red.png";
-import '../App.css';
-
+import ball from "../img/pokeball.png";
+import "../App.css";
+import ClickNumber from "./ClickNumber";
 
 class Ball extends Component {
+	getMousePosition(e) {
+		var rect = e.target.getBoundingClientRect();
+		var x = e.clientX - rect.left;
+		var y = e.clientY - rect.top;
+		console.log("e:", e);
+		console.log("x: ", x, " y: ", y);
+		return {
+			x,
+			y,
+		};
+	}
 
-	render() {		
+	render() {
 		return (
 			<div>
 				<img
-          className="pokeball"
+					className="pokeball"
 					type="img"
 					alt="ball"
 					src={ball}
-					onClick={this.props.handleClick, this.props.handleClick2}
+					onClick={this.props.handleClick}
 				/>
+				<ClickNumber mousePosition={this.getMousePosition.bind(this)} />
 			</div>
 		);
 	}
