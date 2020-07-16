@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../app.css";
+import "../App.css";
 
 class ClickNumber extends Component {
 	constructor(props) {

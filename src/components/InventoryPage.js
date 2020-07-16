@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import InventoryItem from "./inventoryitem";
+import InventoryItem from "./InventoryItem";
 
 export default class InventoryPage extends Component {
 	constructor(props) {
@@ -40,5 +40,3 @@ export default class InventoryPage extends Component {
 		);
 	}
 }
-
-export default InventoryPage;
