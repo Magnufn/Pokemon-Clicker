@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Ball from "./ball";
 import Purchase from "./purchase";
 import InventoryPage from "./InventoryPage";
-import { pokemonArray } from "./hashmappokemon";
+import { pokemonArray } from "./HashMapPokemon";
 import pokecoin from "../img/pokecoin.png";
 
 class Game extends Component {
