@@ -8,7 +8,7 @@ export const pokemonArray = [
     {name: "Squirtle", count: 0},
     {name: "Wartortle", count: 0},
     {name: "Blastoise", count: 0},
-    /*[10, ["Caterpie", 0]],
+    /*{name: "Caterpie", count: 0},
     [11, "Metapod"],
     [12, "Butterfree"],
     [13, "Weedle"],

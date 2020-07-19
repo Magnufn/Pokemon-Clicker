@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Ball from "./Ball";
 import Purchase from "./Purchase";
 import InventoryPage from "./InventoryPage";
+import TrainerName from "./TrainerName";
 import { pokemonArray } from "./HashMapPokemon";
 import pokecoin from "../img/pokecoin.png";
 
@@ -18,7 +19,7 @@ class Game extends Component {
 	handlePurchase = () => {
 		console.log(this.state.myPokemons);
 		if (this.state.points >= 2) {
-			var ran = Math.floor(Math.random() * 9); //returns int between 0-9 + 1
+			var ran = Math.floor(Math.random() * 10); //returns int between 0-9 + 1
 			this.setState({ points: this.state.points - 2 });
 
 			this.setState((prevState, currentProps) => ({
@@ -50,6 +51,7 @@ class Game extends Component {
 			<div className="content">
 				<div className="firstTab">
 					<h1 style={{ textAlign: "center" }}>
+						<TrainerName />
 						{this.state.points} 
 						<img
 							className="pokecoin"
@@ -69,7 +71,7 @@ class Game extends Component {
 
 				<div className="secondTab"> HER KOMMER DET MER KULT SENERE</div>
 				<div className="thirdTab">
-					<div className="btn" onClick={this.toggleInventory}>
+					<div className="inventoryBtn" onClick={this.toggleInventory}>
 						<button>Toggle inventory</button>
 					</div>
 					<Purchase handlePurchase={this.handlePurchase} />
