@@ -14,7 +14,7 @@ class Game extends Component {
 			coins: 0,
 			myPokemons: pokemonArray,
 			inventorySeen: false,
-			coinsPerSecond: 1,
+			coinsPerSecond: 0,
 		};
 	}
 
