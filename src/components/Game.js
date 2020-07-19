@@ -3,6 +3,7 @@ import Ball from "./Ball";
 import Purchase from "./Purchase";
 import InventoryPage from "./InventoryPage";
 import TrainerName from "./TrainerName";
+import Coins from "./Coins";
 import { pokemonArray } from "./HashMapPokemon";
 import pokecoin from "../img/pokecoin.png";
 
@@ -10,20 +11,29 @@ class Game extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			points: 0,
+			coins: 0,
 			myPokemons: pokemonArray,
 			inventorySeen: false,
+			coinsPerSecond: 1,
 		};
 	}
 
+	componentDidMount() {
+		this.interval = setInterval(() => this.setState({ coins: this.state.coins + this.state.coinsPerSecond/10}), 100);
+	}
+	
+	componentWillUnmount() {
+		clearInterval(this.interval);
+	}
+
 	handlePurchase = () => {
-		console.log(this.state.myPokemons);
-		if (this.state.points >= 2) {
-			var ran = Math.floor(Math.random() * 10); //returns int between 0-9 + 1
-			this.setState({ points: this.state.points - 2 });
+		if (this.state.coins >= 10) {
+			var ran = Math.floor(Math.random() * 9); //returns int between 0-9 + 1
+			this.setState({ coins: this.state.coins - 10})//, coinsPerSecond: this.state.coinsPerSecond + this.state.myPokemons[ran][2] });
 
 			this.setState((prevState, currentProps) => ({
 				myPokemons: prevState.myPokemons.map((currPokemon, index) => {
+					console.log(currPokemon.name)
 					if (index !== ran) {
 						return currPokemon;
 					} else {
@@ -31,6 +41,8 @@ class Game extends Component {
 					}
 				}),
 			}));
+			console.log("ran", ran)
+			this.setState({coinsPerSecond: this.state.coinsPerSecond + this.state.myPokemons[ran].coinsPerSecond})
 		}
 	};
 
@@ -41,8 +53,8 @@ class Game extends Component {
 	};
 
 	handleClick(...args) {
-		console.log(args);
-		this.setState({ points: this.state.points + 1 });
+		//console.log(args);
+		this.setState({ coins: this.state.coins + 1 });
 		//return <ClickNumber />;
 	}
 
@@ -52,7 +64,7 @@ class Game extends Component {
 				<div className="firstTab">
 					<h1 style={{ textAlign: "center" }}>
 						<TrainerName />
-						{this.state.points} 
+						<Coins coins={this.state.coins} coinsPerSecond={this.state.coinsPerSecond} /> 
 						<img
 							className="pokecoin"
 							type="img"
@@ -60,6 +72,7 @@ class Game extends Component {
 							src={pokecoin}
 							style={{margin: "0 0 0 4px"}}
 						/>
+						<p style={{fontSize: "15px"}}>Coins per second: {this.state.coinsPerSecond.toFixed(1)}</p>
 					</h1>
 					{/* 4 different approaches to binding this. First could lead to performance issues.*/}
 					{/*<Ball handleClick={this.handleClick.bind(this)} />*/}
@@ -79,7 +92,7 @@ class Game extends Component {
 						<InventoryPage
 							toggle={this.toggleInventory}
 							data={this.state.myPokemons}
-							points={this.state.points}
+							coins={this.state.coins}
 						/>
 					) : null}
 				</div>

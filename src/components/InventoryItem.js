@@ -18,7 +18,8 @@ class InventoryItem extends Component {
 					className="pokemonImage"
 				/>
 				<div className="pokemonInfo">
-					#{id} {this.props.item.name} {this.props.item.count}
+					#{id} {this.props.item.name} {this.props.item.count} <br/>
+					 Coins/s: {this.props.item.coinsPerSecond}
 					<div
 						style={
 							this.state.price <= this.props.points

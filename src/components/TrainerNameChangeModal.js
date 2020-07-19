@@ -17,8 +17,10 @@ class TrainerNameChangeModal extends Component {
 		return (
 			<Modal
 				isOpen={this.props.showNameChange}
-				shouldCloseOnOverlayClick={false}
+				shouldCloseOnOverlayClick={true}
 				onRequestClose={() => this.props.toggleShowNameChange()}
+				className="nameChangeModal"
+				overlayClassName="nameChangeModalOverlay"
 			>
 				<div>
 					<h1> Give yourself a name </h1>
