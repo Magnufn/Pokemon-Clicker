@@ -27,7 +27,7 @@ class Ball extends Component {
 					onClick={this.props.handleClick}
 				/>
 			</div>
-			/*<ClickNumber mousePosition={this.getMousePosition.bind(this)} />*/
+			 /*<ClickNumber mousePosition={this.getMousePosition.bind(this)} />*/
 		);
 	}
 }
