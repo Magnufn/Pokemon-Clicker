@@ -22,12 +22,13 @@ class TrainerNameChangeModal extends Component {
 				className="nameChangeModal"
 				overlayClassName="nameChangeModalOverlay"
 			>
-				<div>
+				<div style={{textAlign: "center"}}>
 					<h1> Give yourself a name </h1>
 					<p> What should your name be? </p>
 					<input
 						type="text"
 						name="username"
+						style={{position: "relative", width: "80%", border: "1px solid black"}}
 						value={this.props.trainerName}
 						onChange={this.props.handleInput}
 						onKeyPress={(event) => {
@@ -36,7 +37,8 @@ class TrainerNameChangeModal extends Component {
 							}
 						}}
 					/>
-					<button onClick={() => this.props.toggleShowNameChange()}>
+					<br/>
+					<button style={{margin: "5px 10px 10px 0px"}} onClick={() => this.props.toggleShowNameChange()}>
 						Close
 					</button>
 				</div>

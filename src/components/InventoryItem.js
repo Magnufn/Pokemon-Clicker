@@ -5,7 +5,7 @@ const QUERYIMAGE = "https://pokeres.bastionbot.org/images/pokemon/";
 
 class InventoryItem extends Component {
 	state = {
-		price: 2,
+		price: this.props.item.price,
 	};
 
 	render() {
@@ -22,7 +22,7 @@ class InventoryItem extends Component {
 					 Coins/s each: {this.props.item.coinsPerSecond}
 					<div
 						style={
-							this.state.price <= this.props.points
+							this.state.price <= this.props.coins
 								? { color: "green" }
                                 : { color: "red" }
 						}
@@ -33,7 +33,7 @@ class InventoryItem extends Component {
 							alt="pokecoin"
 							src={pokecoin}
 						/>
-						{this.state.price}
+						{Math.ceil(this.state.price*(Math.pow(1.15, this.props.item.count)))}
 					</div>
 				</div>
 			</div>

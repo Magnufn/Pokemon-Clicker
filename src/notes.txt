@@ -10,3 +10,7 @@ Beskrivelse
 - Plasser på mouse position
 - Kjør animasjon
 - Fjern den ClickNumberen
+
+
+Price=Base cost×1.15^(M)
+where M – the number of that type of building currently owned;

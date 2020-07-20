@@ -13,7 +13,7 @@ class Game extends Component {
 		this.state = {
 			coins: 0,
 			myPokemons: pokemonArray,
-			inventorySeen: false,
+			inventorySeen: true,
 			coinsPerSecond: 0,
 		};
 	}
@@ -26,23 +26,22 @@ class Game extends Component {
 		clearInterval(this.interval);
 	}
 
-	handlePurchase = () => {
-		if (this.state.coins >= 10) {
+	handlePurchase = (price, i) => {
+		console.log("hei")
+		if (this.state.coins >= price) {
 			var ran = Math.floor(Math.random() * 9); //returns int between 0-9 + 1
-			this.setState({ coins: this.state.coins - 10})//, coinsPerSecond: this.state.coinsPerSecond + this.state.myPokemons[ran][2] });
+			this.setState({ coins: this.state.coins - price})//, coinsPerSecond: this.state.coinsPerSecond + this.state.myPokemons[ran][2] });
 
 			this.setState((prevState, currentProps) => ({
 				myPokemons: prevState.myPokemons.map((currPokemon, index) => {
-					console.log(currPokemon.name)
-					if (index !== ran) {
+					if (index !== i) {
 						return currPokemon;
 					} else {
 						return { ...currPokemon, count: currPokemon.count + 1 };
 					}
 				}),
 			}));
-			console.log("ran", ran)
-			this.setState({coinsPerSecond: this.state.coinsPerSecond + this.state.myPokemons[ran].coinsPerSecond})
+			this.setState({coinsPerSecond: this.state.coinsPerSecond + this.state.myPokemons[i].coinsPerSecond})
 		}
 	};
 
@@ -93,6 +92,7 @@ class Game extends Component {
 							toggle={this.toggleInventory}
 							data={this.state.myPokemons}
 							coins={this.state.coins}
+							handlePurchase={this.handlePurchase}
 						/>
 					) : null}
 				</div>

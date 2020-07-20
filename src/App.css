@@ -78,6 +78,7 @@
 .inventoryPage {
 	position: absolute;
 	overflow-y: auto;
+	cursor: pointer;
 	top: 10%;
 	height: 85%;
 }
@@ -88,6 +89,7 @@
 	border: 1px solid black;
 	margin: 5px;
 	height: 100px;
+	width: 95%;
 }
 
 .pokemonImage {
@@ -148,12 +150,14 @@
   .nameChangeModal {
 	position: absolute;
 	width: 30%;
-	top: 25%;
-	left: 35%;
-	right: 35%;
-	bottom: 25%;
+	top: 30%;
+    transform: translate(-50%);
+	left: 50%;
+	width: 30%;
+	bottom: 30%;
 	border: 1px solid #ccc;
 	background: #fff;
+	font-size: 15px;
 	overflow: auto;
 	-webkit-overflow-scrolling: touch;
 	border-radius: 4px;

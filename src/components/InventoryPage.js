@@ -3,22 +3,24 @@ import InventoryItem from "./InventoryItem";
 
 export default class InventoryPage extends Component {
 	constructor(props) {
-		super(props)
-	
+		super(props);
+
 		this.state = {
-			items: []
-		}
+			items: [],
+		};
 	}
-	
+
 	handleClick = () => {
 		this.props.toggle();
 	};
 	render() {
 		return (
 			<div>
-				<ul className="inventoryPage" style={this.styles}>
+				<ul className="inventoryPage">
 					{this.props.data.map((item, i) => (
-						<InventoryItem item={item} id={i} points={this.props.points} key={i} />
+						<div onClick={() => this.props.handlePurchase(Math.ceil(item.price*Math.pow(1.15,item.count)), i)} key={i}>
+							<InventoryItem item={item} id={i} coins={this.props.coins} />
+						</div>
 					))}
 				</ul>
 			</div>
