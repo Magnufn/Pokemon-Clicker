@@ -11,7 +11,11 @@ class InventoryItem extends Component {
 	render() {
 		const id = this.props.id + 1;
 		return (
-			<div className="inventoryItemModal has-tooltip">
+			<div className="inventoryItemModal has-tooltip" /* style={
+				this.state.price <= this.props.coins
+					? {opacity: "1" }
+					: { opacity: "0.5" }} Dette fungerer, men bugger tooltippen slik at på de som man ikke har råd til vil tooltippen legge seg bak de andre*/>
+				
 				<img
 					src={QUERYIMAGE + id + ".png"}
 					alt="new"
@@ -24,7 +28,7 @@ class InventoryItem extends Component {
 						style={
 							this.state.price <= this.props.coins
 								? { color: "green" }
-                                : { color: "red" }
+                                : { color: "red"}
 						}
 					>
 						<img
@@ -35,7 +39,6 @@ class InventoryItem extends Component {
 						/>
 						{Math.ceil(this.state.price*(Math.pow(1.15, this.props.item.count)))}
 					</div>
-					<span className="tooltip-wrapper"><span className="tooltip">{this.props.item.name}</span></span>
 					
 				</div>
 				<div className="countInfo">{this.props.item.count}</div>

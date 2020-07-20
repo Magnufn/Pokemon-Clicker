@@ -98,6 +98,8 @@
 	width: 95%;
 }
 
+
+
 .pokemonImage {
 	position: relative;
 	width: 15%;
@@ -185,6 +187,7 @@
 .tooltip-wrapper {
 	position: absolute;
 	visibility: hidden;
+	overflow: visible;
 }
 .has-tooltip:hover .tooltip-wrapper {
 	visibility: visible;
