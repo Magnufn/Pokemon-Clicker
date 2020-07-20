@@ -11,14 +11,14 @@ class InventoryItem extends Component {
 	render() {
 		const id = this.props.id + 1;
 		return (
-			<div className="inventoryItemModal">
+			<div className="inventoryItemModal has-tooltip">
 				<img
 					src={QUERYIMAGE + id + ".png"}
 					alt="new"
 					className="pokemonImage"
 				/>
 				<div className="pokemonInfo">
-					#{id} {this.props.item.name} {this.props.item.count} <br/>
+					#{id} {this.props.item.name} <br/>
 					 Coins/s each: {this.props.item.coinsPerSecond}
 					<div
 						style={
@@ -35,7 +35,12 @@ class InventoryItem extends Component {
 						/>
 						{Math.ceil(this.state.price*(Math.pow(1.15, this.props.item.count)))}
 					</div>
+					<span className="tooltip-wrapper"><span className="tooltip">{this.props.item.name}</span></span>
+					
 				</div>
+				<div className="countInfo">{this.props.item.count}</div>
+
+				
 			</div>
 		);
 	}

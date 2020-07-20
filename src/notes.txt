@@ -14,3 +14,5 @@ Beskrivelse
 
 Price=Base cost×1.15^(M)
 where M – the number of that type of building currently owned;
+
+- Bug med rød/grønn nummer, tror det er noe galt i if-setninga, eller at den ikke updates på riktig tid

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Ball from "./Ball";
-import Purchase from "./Purchase";
 import InventoryPage from "./InventoryPage";
 import TrainerName from "./TrainerName";
 import Coins from "./Coins";
@@ -19,7 +18,7 @@ class Game extends Component {
 	}
 
 	componentDidMount() {
-		this.interval = setInterval(() => this.setState({ coins: this.state.coins + this.state.coinsPerSecond/10}), 100);
+		this.interval = setInterval(() => this.setState({ coins: this.state.coins + this.state.coinsPerSecond}), 1000);
 	}
 	
 	componentWillUnmount() {
@@ -27,9 +26,8 @@ class Game extends Component {
 	}
 
 	handlePurchase = (price, i) => {
-		console.log("hei")
 		if (this.state.coins >= price) {
-			var ran = Math.floor(Math.random() * 9); //returns int between 0-9 + 1
+			//var ran = Math.floor(Math.random() * 9); //returns int between 0-9 + 1
 			this.setState({ coins: this.state.coins - price})//, coinsPerSecond: this.state.coinsPerSecond + this.state.myPokemons[ran][2] });
 
 			this.setState((prevState, currentProps) => ({
@@ -86,7 +84,6 @@ class Game extends Component {
 					<div className="inventoryBtn" onClick={this.toggleInventory}>
 						<button>Toggle inventory</button>
 					</div>
-					<Purchase handlePurchase={this.handlePurchase} />
 					{this.state.inventorySeen ? (
 						<InventoryPage
 							toggle={this.toggleInventory}
