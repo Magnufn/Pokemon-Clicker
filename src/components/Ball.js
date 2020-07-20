@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ball from "../img/circle_red.png";
+import ball from "../img/pokeball.png";
 import "../App.css";
 import ClickNumber from "./ClickNumber";
 
