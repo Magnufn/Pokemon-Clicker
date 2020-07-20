@@ -39,7 +39,6 @@ class InventoryItem extends Component {
 						/>
 						{Math.ceil(this.state.price*(Math.pow(1.15, this.props.item.count)))}
 					</div>
-					<span className="tooltip-wrapper"><span className="tooltip">{this.props.item.name}</span></span>
 				</div>
 				<div className="countInfo">{this.props.item.count}</div>
 
