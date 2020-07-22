@@ -24,23 +24,7 @@ class pokemonInfoHover extends Component {
 					alt="new"
 					className="pokemonImage"
 				/>
-				<div className="pokecoinHoverDiv"
-					style={
-						(this.state.price <= this.props.coins
-							? { color: "green" }
-							: { color: "red" }
-						)
-					}
-				>
-					<img
-						className="pokecoinHover"
-						type="img"
-						alt="pokecoin"
-						src={pokecoin}
-						style={tooltipImageStyle}
-					/>
-					{Math.ceil(this.state.price * Math.pow(1.15, this.props.item.count))}
-				</div>
+
 				<div className="pokemonInfo pokemonInfoHover">
 					<p style={{ fontSize: "1.25vw", margin: "0" }}>
 						#{id} {this.props.item.name}
@@ -59,6 +43,23 @@ class pokemonInfoHover extends Component {
 						per second
 					</li>
 					<li>{this.props.totalEarned.toFixed(1)} pokécoins earned so far</li>
+				</div>
+				<div
+					className="pokecoinHoverDiv"
+					style={
+						this.state.price <= this.props.coins
+							? { color: "green" }
+							: { color: "red" }
+					}
+				>
+					<img
+						className="pokecoinHover"
+						type="img"
+						alt="pokecoin"
+						src={pokecoin}
+						style={tooltipImageStyle}
+					/>
+					{Math.ceil(this.state.price * Math.pow(1.15, this.props.item.count))}
 				</div>
 			</div>
 		);
