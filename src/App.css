@@ -89,6 +89,11 @@
 	height: 85%;
 }
 
+.scrollInvDiv {
+	overflow-y: scroll;
+	height:95%;
+}
+
 .inventoryItemModal {
 	background-color: orange;
 	position: relative;
@@ -102,21 +107,37 @@
 
 .pokemonImage {
 	position: relative;
-	width: 15%;
+	width: 25%;
 	max-width: 100%;
 	max-height: 100%;
 	left: 5px;
 	transform: translateY(-50%);
 	top: 50%;
+	float: left;
 }
 
 .pokemonInfo {
-	position: absolute;
-	left: 25%;
-	top: 50%;
-	transform: translateY(-50%);
+	position: relative;
+	left: 10%;	
+	max-width: 65%;
 	z-index: 1;
 	font-size: 2vw;
+	max-height:100%;
+}
+
+.pokemonInfoHover {
+	font-size: 1vw;
+	float: left;
+	top: -15%;
+}
+
+.pokecoinHoverDiv {
+	position: relative;
+	width: 75px;
+	float: right;
+	right: 0%;
+	top: 0%;
+	font-size: 3vw;
 }
 
 .countInfo {
@@ -130,6 +151,11 @@
 
 .pokecoin {
 	width: 7%;
+	transform: translateY(2px);
+}
+
+.pokecoinHover {
+	width: 20%;
 	transform: translateY(2px);
 }
 
@@ -187,7 +213,7 @@
 .tooltip-wrapper {
 	position: absolute;
 	visibility: hidden;
-	overflow: visible;
+	overflow: visible !important;
 }
 .has-tooltip:hover .tooltip-wrapper {
 	visibility: visible;
@@ -200,10 +226,10 @@
 
 .tooltip {
 	display: block;
-	position: relative;
+	position: absolute;
 	top: 2em;
 	right: 100%;
-	width: 340px;
+	width: 140px;
 	height: 96px;
 	/*margin-left: -76px;*/
 	color: #ffffff;
@@ -212,6 +238,7 @@
 	text-align: center;
 	border-radius: 8px;
 	box-shadow: 4px 3px 10px #800000;
+	z-index: 999;
 }
 .tooltip:after {
 	content: "";

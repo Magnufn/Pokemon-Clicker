@@ -18,7 +18,15 @@ export default class InventoryPage extends Component {
 			<div>
 				<ul className="inventoryPage">
 					{this.props.data.map((item, i) => (
-						<div onClick={() => this.props.handlePurchase(Math.ceil(item.price*Math.pow(1.15,item.count)), i)} key={i}>
+						<div
+							onClick={() =>
+								this.props.handlePurchase(
+									Math.ceil(item.price * Math.pow(1.15, item.count)),
+									i
+								)
+							}
+							key={i}
+						>
 							<InventoryItem item={item} id={i} coins={this.props.coins} />
 						</div>
 					))}

@@ -1,52 +1,61 @@
 import React, { Component } from "react";
 import pokecoin from "../img/pokecoin.png";
-
-const QUERYIMAGE = "https://pokeres.bastionbot.org/images/pokemon/";
+import PokemonInfo from "./pokemonInfo";
+import PokemonInfoHover from "./pokemonInfoHover";
 
 class InventoryItem extends Component {
-	state = {
-		price: this.props.item.price,
-	};
+	constructor(props) {
+		super(props);
+		this.handleMouseHover = this.handleMouseHover.bind(this);
+		this.state = {
+			isHovering: false,
+			totalEarned: 0
+		};
+	}
+
+
+	componentDidMount() {
+		this.interval = setInterval(() => this.setState({ totalEarned: this.state.totalEarned + this.props.item.coinsPerSecond*this.props.item.count}), 1000);
+	}
+	
+	componentWillUnmount() {
+		clearInterval(this.interval);
+	}
+
+	handleMouseHover() {
+		this.setState(this.toggleHoverState);
+	}
+
+	toggleHoverState(state) {
+		return {
+			isHovering: !state.isHovering,
+		};
+	}
 
 	render() {
-		const id = this.props.id + 1;
 		return (
-			<div className="inventoryItemModal has-tooltip" /* style={
-				this.state.price <= this.props.coins
-					? {opacity: "1" }
-					: { opacity: "0.5" }} Dette fungerer, men bugger tooltippen slik at på de som man ikke har råd til vil tooltippen legge seg bak de andre*/>
-				
-				<img
-					src={QUERYIMAGE + id + ".png"}
-					alt="new"
-					className="pokemonImage"
-				/>
-				<div className="pokemonInfo">
-					#{id} {this.props.item.name} <br/>
-					 Coins/s each: {this.props.item.coinsPerSecond}
-					<div
-						style={
-							this.state.price <= this.props.coins
-								? { color: "green" }
-                                : { color: "red"}
-						}
-					>
-						<img
-							className="pokecoin"
-							type="img"
-							alt="pokecoin"
-							src={pokecoin}
-						/>
-						{Math.ceil(this.state.price*(Math.pow(1.15, this.props.item.count)))}
-					</div>
-					<span className="tooltip-wrapper"><span className="tooltip">{this.props.item.name}</span></span>
-				</div>
-				<div className="countInfo">{this.props.item.count}</div>
-
-				
+			<div
+				onMouseEnter={this.handleMouseHover}
+				onMouseLeave={this.handleMouseHover}
+			>
+				{!this.state.isHovering && (
+				<PokemonInfo
+					item={this.props.item}
+					id={this.props.id}
+					coins={this.props.coins}
+				/>)}
+				{this.state.isHovering && (
+					<PokemonInfoHover
+						item={this.props.item}
+						id={this.props.id}
+						coins={this.props.coins}
+						totalEarned={this.state.totalEarned}
+					/>
+				)}
 			</div>
 		);
 	}
 }
+/*<span className="tooltip-wrapper"><span className="tooltip">{this.props.item.name}</span></span>*/
 
 export default InventoryItem;
