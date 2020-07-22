@@ -99,7 +99,6 @@
 	display: flex;
 	border: 1px solid black;
 	margin: 5px;
-	height: 100px;
 	width: 95%;
 }
 
@@ -107,16 +106,18 @@
 
 .pokemonImage {
 	position: relative;
-	width: 25%;
+	width: 8vw;
+	height: 8vw;
+	align-self: center;
 	max-width: 100%;
 	max-height: 100%;
-	left: 5px;
+	left: 1px;
 	float: left;
 }
 
 .pokemonInfo {
 	position: relative;
-	left: 10%;	
+	left: 5%;	
 	max-width: 65%;
 	z-index: 1;
 	font-size: 2vw;
@@ -139,10 +140,8 @@
 }
 
 .countInfo {
-	position: absolute;
-	left: 85%;
-	top: 50%;
-	transform: translateY(-50%);
+	position: relative;
+	margin-left: auto;
 	font-size: 7vw;
 	opacity: 0.5;
 }

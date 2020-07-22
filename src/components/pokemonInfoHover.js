@@ -26,7 +26,7 @@ class pokemonInfoHover extends Component {
 				/>
 
 				<div className="pokemonInfo pokemonInfoHover">
-					<p style={{ fontSize: "1.25vw", margin: "0" }}>
+					<p style={{ fontSize: "2vw", margin: "0" }}>
 						#{id} {this.props.item.name}
 					</p>
 					<p style={{ fontSize: "0.5vw", margin: "0" }}>
