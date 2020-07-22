@@ -93,7 +93,6 @@ class Game extends Component {
 						/>
 					) : null}
 				</div>
-				<p>{JSON.stringify(this.state.myPokemons.name)}</p>
 			</div>
 		);
 	}
