@@ -23,6 +23,7 @@ class InventoryItem extends Component {
 	}
 
 	handleMouseHover() {
+		console.log(this.props.pokemonData.name)
 		this.setState(this.toggleHoverState);
 	}
 
