@@ -7,9 +7,7 @@ export default class InventoryPage extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {
-			items: [],
-		};
+		this.state = {};
 	}
 
 	fetchPokemonData = (pokemon) => {
@@ -31,8 +29,9 @@ export default class InventoryPage extends Component {
 			});
 	};
 
-	listData = () => { //name, count, cps, price
-	}
+	listData = () => {
+		//name, count, cps, price
+	};
 
 	handleClick = () => {
 		this.props.toggle();

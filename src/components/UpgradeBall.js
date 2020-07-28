@@ -14,7 +14,7 @@ class UpgradeBall extends Component {
 		} else if (this.props.ballLvl === 2 && this.props.coins >= 30) {
 			// Ball is lvl 2
 			return true;
-		} //Only 2 balls for now
+		} //Only 2 ball upgrades for now
 		else {
 			return false;
 		}
@@ -25,7 +25,7 @@ class UpgradeBall extends Component {
 		return this.checkIfAvailable() ? (
 			<div className="tooltip">
 				<button style={{marginLeft:"5px"}} onClick={this.props.handleClick}>Upgrade ball</button>
-                <span class="tooltiptext">Click to upgrade your coins per click to {this.props.ballLvl}</span>
+                <span className="tooltiptext">Click to upgrade your coins per click to {this.props.ballLvl}</span>
 			</div>
 		) : null;
 	}

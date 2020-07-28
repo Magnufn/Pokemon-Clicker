@@ -9,21 +9,27 @@ class InventoryItem extends Component {
 		this.handleMouseHover = this.handleMouseHover.bind(this);
 		this.state = {
 			isHovering: false,
-			totalEarned: 0
+			totalEarned: parseInt(localStorage.getItem('totalEarned' + this.props.id)) || 0
 		};
 	}
 
 
 	componentDidMount() {
 		this.interval = setInterval(() => this.setState({ totalEarned: this.state.totalEarned + this.props.item.coinsPerSecond*this.props.item.count}), 1000);
+		this.intervalLocalStorage = setInterval(() => this.localStorageFunction(), 30000);
+
 	}
+
+	localStorageFunction = () => {
+		localStorage.setItem('totalEarned' + this.props.id, this.state.totalEarned)
+	};
 	
 	componentWillUnmount() {
 		clearInterval(this.interval);
+		clearInterval(this.intervalLocalStorage);
 	}
 
 	handleMouseHover() {
-		console.log(this.props.pokemonData.name)
 		this.setState(this.toggleHoverState);
 	}
 

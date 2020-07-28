@@ -4,6 +4,7 @@ import InventoryPage from "./InventoryPage";
 import TrainerName from "./TrainerName";
 import Coins from "./Coins";
 import UpgradeBall from "./UpgradeBall";
+import ResetGame from "./ResetGame";
 import { pokemonArray } from "./HashMapPokemon";
 import pokecoin from "../img/pokecoin.png";
 
@@ -11,25 +12,39 @@ class Game extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			coins: 0,
-			myPokemons: pokemonArray,
+			coins: parseInt(localStorage.getItem("coins")) || 0,
+			myPokemons:
+				JSON.parse(localStorage.getItem("myPokemons")) || pokemonArray,
 			inventorySeen: true,
-			coinsPerSecond: 0,
-			ballLvl: 1,
-			coinsPerClick: 1,
+			coinsPerSecond: parseFloat(localStorage.getItem("coinsPerSecond")) || 0,
+			ballLvl: parseInt(localStorage.getItem("ballLvl")) || 1,
+			coinsPerClick: parseInt(localStorage.getItem("coinsPerClick")) || 1,
 		};
 	}
 
 	componentDidMount() {
-		this.interval = setInterval(
-			() =>
-				this.setState({ coins: this.state.coins + this.state.coinsPerSecond }),
-			1000
+		this.interval = setInterval(() => this.intervalFunction(), 1000);
+		this.intervalLocalStorage = setInterval(
+			() => this.localStorageFunction(),
+			30000
 		);
 	}
 
+	intervalFunction = () => {
+		this.setState({ coins: this.state.coins + this.state.coinsPerSecond });
+	};
+
+	localStorageFunction = () => {
+		localStorage.setItem("coins", this.state.coins);
+		localStorage.setItem("myPokemons", JSON.stringify(this.state.myPokemons));
+		localStorage.setItem("coinsPerSecond", this.state.coinsPerSecond);
+		localStorage.setItem("ballLvl", this.state.ballLvl);
+		localStorage.setItem("coinsPerClick", this.state.coinsPerClick);
+	};
+
 	componentWillUnmount() {
 		clearInterval(this.interval);
+		clearInterval(this.intervalLocalStorage);
 	}
 
 	handlePurchase = (price, i) => {
@@ -46,17 +61,12 @@ class Game extends Component {
 					}
 				}),
 			}));
+
 			this.setState({
 				coinsPerSecond:
 					this.state.coinsPerSecond + this.state.myPokemons[i].coinsPerSecond,
 			});
 		}
-	};
-
-	toggleInventory = () => {
-		this.setState({
-			inventorySeen: !this.state.inventorySeen,
-		});
 	};
 
 	handleClick(...args) {
@@ -65,12 +75,22 @@ class Game extends Component {
 		//return <ClickNumber />;
 	}
 
+	handleReset = () => {
+		console.log("CLEAR");
+		localStorage.clear();
+		console.log(this)
+		this.forceUpdate();
+	};
+
 	handleUpgradeBall = () => {
 		this.setState({
 			ballLvl: this.state.ballLvl + 1,
 			coinsPerClick: this.state.coinsPerClick + 1,
-			coins: this.state.coins - 20
+			coins: this.state.coins - 20,
 		});
+		localStorage.setItem("ballLvl", this.state.ballLvl + 1);
+		localStorage.setItem("coinsPerClick", this.state.coinsPerClick + 1);
+		localStorage.setItem("coins", this.state.coins - 20);
 	};
 
 	render() {
@@ -105,15 +125,23 @@ class Game extends Component {
 					{/* The new, experimental way, which create-react-app supports, is to make arrow functions when creating the methods. Will probably be the go-to approach when it's accepted as a feature in React */}
 				</div>
 
-				<div className="secondTab"> HER KOMMER DET MER KULT SENERE</div>
+				<div className="secondTab">
+					{" "}
+					HER KOMMER DET MER KULT SENERE
+					<ResetGame onClick={this.handleReset} />
+				</div>
 				<div className="thirdTab">
 					{/*<div className="inventoryBtn" onClick={this.toggleInventory}>
 						<button>Toggle inventory</button>
 					</div>
 					{this.state.inventorySeen ? (*/}
 					<div className="upgradeDiv">
-						HER SKAL DET VÆRE UPGRADES ELLER NOE(?) <br/>
-						<UpgradeBall ballLvl={this.state.ballLvl} coins={this.state.coins} handleClick={() => this.handleUpgradeBall()} />
+						HER SKAL DET VÆRE UPGRADES ELLER NOE(?) <br />
+						<UpgradeBall
+							ballLvl={this.state.ballLvl}
+							coins={this.state.coins}
+							handleClick={() => this.handleUpgradeBall()}
+						/>
 					</div>
 					<div className="inventoryPageDiv">
 						<InventoryPage
