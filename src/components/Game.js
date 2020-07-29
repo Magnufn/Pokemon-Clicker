@@ -76,10 +76,15 @@ class Game extends Component {
 	}
 
 	handleReset = () => {
-		console.log("CLEAR");
 		localStorage.clear();
-		console.log(this)
-		this.forceUpdate();
+		this.setState({
+			coins: 0,
+			myPokemons: pokemonArray,
+			inventorySeen: true,
+			coinsPerSecond: 0,
+			ballLvl: 1,
+			coinsPerClick: 1,
+		});
 	};
 
 	handleUpgradeBall = () => {
@@ -88,9 +93,6 @@ class Game extends Component {
 			coinsPerClick: this.state.coinsPerClick + 1,
 			coins: this.state.coins - 20,
 		});
-		localStorage.setItem("ballLvl", this.state.ballLvl + 1);
-		localStorage.setItem("coinsPerClick", this.state.coinsPerClick + 1);
-		localStorage.setItem("coins", this.state.coins - 20);
 	};
 
 	render() {

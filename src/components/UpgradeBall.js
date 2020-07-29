@@ -21,7 +21,6 @@ class UpgradeBall extends Component {
 	};
 
 	render() {
-        const tooltip = "Click to upgrade your coins per click"
 		return this.checkIfAvailable() ? (
 			<div className="tooltip">
 				<button style={{marginLeft:"5px"}} onClick={this.props.handleClick}>Upgrade ball</button>
